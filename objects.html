@@ -33,10 +33,83 @@
                         </p>
                         <hr>
                         <h2>2. Object Literals</h2>
-                        <script>
-                            // let a 
-                        </script>
+                        <ul>
+                                <li>Using object literal syntax. So these curly braces {}, we refer to them as object literal syntax.</li>
+                                <li>An object in JavaScript is essentially a collection of key value pairs. So inside these curly braces I'm going to add a few key value pairs</li>
+                                <li>
+                                    Example:
+                                    <br>
+        <pre>
+            <code>
+                const circle = {
+                    radius: 1,
+                    location: {
+                        x: 1,
+                        y: 1
+                    },
+                    draw: function() {
+                        console.log('draw');
+                    }
+                };
+                circle.draw();
+                // outputs: draw
+            </code>
+        </pre>
+                                </li>
+                                <!-- <script>
+                                    //object literal syntax - {}
+                                    const circle = {
+                                        radius: 1,
+                                        location: {
+                                            x: 1,
+                                            y: 1
+                                        },
+                                        draw: function() {
+                                            console.log('draw');
+                                        }
+                                    };
+                                    circle.draw();
+                                </script> -->
+                        </ul>
+                        <h2>2. Factories</h2>
+                        <ul>
+                            <li>Now let's imagine here we didn't have this draw method. Duplicating this object wouldn't be a big deal, so basically we would end up with two objects, and then here we could use
+                                different values. So creating objects with the object literal syntax is an issue only if that object has a behavior. So what's the solution? The solution is to use a factory or a constructor function.
+                            </li>
+                            <li>
+                                <strong>Example:</strong>
+                                <p>So let me show you how that works. I'm going to delete, this second circle, and define a function called createCircle.
+                                    Now, I'm going to move all this code inside this new function like this. Now we don't need to declare a constant, we can simple return this object.
+                                    Now this circle requires a radius so instead of hard coding one here, I'm going to add a parameter, radius, and then set that here.
+                                    Now in ES6 we have this new feature, so if the key and the value are the same we can remove the noise in the code by removing the value, so we can only add radius. Now, to
+                                    simplify the code so you can focus on what I'm going to teach you, I'm going to drop this location property, you don't really need it.
+                                    Instead I'm going to add our draw method. So key value, and let's do a simple console.log draw, okay?
+                                    So this is what we call a factory function. Now, you can simply call this function to create a new circle so constant, circle, we call createCircle and pass 1 as the radius.
+                                </p>
+                            </li>
+<pre>
+    <code>
+        // Factory function
+        function createCircle(radius){
+            return {
+                radius,
+                draw: function() {
+                    console.log('draw with radius '+ radius);
+                }
+            }
+        }
+        const circle = createCircle(1);
+        circle.draw();
+        //outouts: draw with radius 1
+        const circle2 = createCircle(2);
+        circle2.draw();
+        //outouts: draw with radius 2
+    </code>
+</pre>
+                               
 
+                            </script>
+                        </ul>
                     </div>
             </div>
         </div>

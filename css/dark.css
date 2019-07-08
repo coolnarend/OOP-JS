@@ -98,3 +98,26 @@ aside,
 		font-size: 18px;
 	}
 }
+pre {
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	max-width: 50%;
+}
+pre code {
+	background: #c5c4c4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: rgb(36, 36, 36);
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0;
+    display: block;
+	word-wrap: break-word;
+}
