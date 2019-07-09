@@ -71,7 +71,7 @@
                                     circle.draw();
                                 </script> -->
                         </ul>
-                        <h2>2. Factories</h2>
+                        <h2>3. Factories</h2>
                         <ul>
                             <li>Now let's imagine here we didn't have this draw method. Duplicating this object wouldn't be a big deal, so basically we would end up with two objects, and then here we could use
                                 different values. So creating objects with the object literal syntax is an issue only if that object has a behavior. So what's the solution? The solution is to use a factory or a constructor function.
@@ -110,6 +110,76 @@
 
                             </script>
                         </ul>
+
+                        <h2>4. Constructors</h2>
+                        <ul>
+                            <li>Now there is another way to create an object using a constructor function.</li>
+                            <li>
+                                <strong>Example: </strong><br>
+<pre>
+    <code>
+        function Circle(radius) {
+            console.log('this', this)
+            this.radius = radius;
+            this.draw = function() {
+                console.log('draw with radius: ' + radius);
+            };
+        }
+        const another = new Circle(1);
+        another.draw();
+        /*
+            outputs in console:
+            - this Circle {}
+            - draw with radius: 1
+        */
+    </code>
+</pre>    
+                            </li>
+                            <li>So, our circle function is, going to take a radius parameter, but in the body instead of returning an object we're going to use
+                                the <strong>this</strong> keyword to set the properties of this object.
+                                What is <strong>this</strong>. This is basically a reference to the object that is executing this piece of code. 
+                                We're going to see that in a second. So, imagine we have a new empty object in memory now we're going to use this to reference that object and 
+                                then use .notation to set various properties on that object. So we can set the radius property to this radius argument. Similarly,
+                                we can define another property, draw, but this is more accurately a method, so we set it to a function, and here we go to a console.log of draw.
+                                Okay? Now, we can create a new circle, like this. We use the new operator to call the Circle function and pass 1 as the argument.
+                                When we use the new operator, a few things happen under the hood.
+                                This new operator will create an empty object so like this. An empty object. Then, it will set this to point to that object.
+                                Because by default, this points to the global object. If you're running this code inside of a browser, the global
+                                object is the window object. If you're running it inside a node environment, the global object is global.
+                            </li>
+                            <li>So, when we use the new operator to call a function, 3 things happen. First, this new operator will create an empty object.
+                                Then, it will set this to point to that object and finally, it will return that object from this function, so note that here we don't have
+                                an explicit return statement, you're not retuning this. This will happen automatically when we use the new operator.
+                            </li>
+                            <li></li>
+                        </ul>
+
+                        <h2>4. Constructor Property</h2>
+                        <p>Every object in JavaScript has a property called constructor, and that references the function that was used to construct
+                            or create an object. So here we have two objects.</p>
+                        <p>
+
+                        </p>
+                        <script>
+                         function Circle(radius) {
+                            console.log('this', this)
+                            this.radius = radius;
+                            this.draw = function() {
+                                console.log('draw with radius: ' + radius);
+                            };
+                        }
+                        const another = new Circle(1);
+                        another.draw();
+                        /*
+                            outputs in console:
+                            - this Circle {}
+                            - draw with radius: 1
+                        */
+                        </script>
+                        <ul>
+                            <li></li>
+                        </ul>
+
                     </div>
             </div>
         </div>
