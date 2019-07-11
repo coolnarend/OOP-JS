@@ -32,6 +32,7 @@
                             </strong>
                         </p>
                         <hr>
+
                         <h2>2. Object Literals</h2>
                         <ul>
                                 <li>Using object literal syntax. So these curly braces {}, we refer to them as object literal syntax.</li>
@@ -71,6 +72,8 @@
                                     circle.draw();
                                 </script> -->
                         </ul>
+                        <hr>
+
                         <h2>3. Factories</h2>
                         <ul>
                             <li>Now let's imagine here we didn't have this draw method. Duplicating this object wouldn't be a big deal, so basically we would end up with two objects, and then here we could use
@@ -110,6 +113,7 @@
 
                             </script>
                         </ul>
+                        <hr>
 
                         <h2>4. Constructors</h2>
                         <ul>
@@ -151,32 +155,45 @@
                                 Then, it will set this to point to that object and finally, it will return that object from this function, so note that here we don't have
                                 an explicit return statement, you're not retuning this. This will happen automatically when we use the new operator.
                             </li>
-                            <li></li>
                         </ul>
+                        <hr>
 
-                        <h2>4. Constructor Property</h2>
+                        <h2>5. Constructor Property</h2>
                         <p>Every object in JavaScript has a property called constructor, and that references the function that was used to construct
                             or create an object. So here we have two objects.</p>
                         <p>
-
+<pre><code>
+    function Circle(radius) {
+        this.radius = radius;
+        this.draw = function() {
+            console.log('draw with radius: ' + radius);
+        };
+    }
+    const another = new Circle(1);
+    
+    console.log(another.constructor);
+    /*
+        ƒ Circle(radius) {
+            this.radius = radius;
+            this.draw = function() {
+            console.log('draw with radius: ' + radius);
+    */
+    console.log(Circle.constructor);
+    /*
+        ƒ Function() { [native code] }
+    */
+</code></pre>
                         </p>
-                        <script>
-                         function Circle(radius) {
-                            console.log('this', this)
-                            this.radius = radius;
-                            this.draw = function() {
-                                console.log('draw with radius: ' + radius);
-                            };
-                        }
-                        const another = new Circle(1);
-                        another.draw();
-                        /*
-                            outputs in console:
-                            - this Circle {}
-                            - draw with radius: 1
-                        */
-                        </script>
+                        
+                        <h2>6. Functions are Objects</h2>
                         <ul>
+                            <li>One of the confusing concepts in JavaScript is here, functions are objects. So this circle function we have here is actually an object.
+                                Don't believe me, let me show you, so circle, look these are all the members of the circle function or circle object.
+                                <br>
+                                <img src="./img/functions-objectsobject.JPG" alt="Functions are objects" title="Functions are objects" />
+                                <br>
+                                So the purple objects are methods like call, bind, apply, and the blue icons are properties.
+                            </li>
                             <li></li>
                         </ul>
 
