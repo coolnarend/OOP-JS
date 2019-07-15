@@ -103,7 +103,7 @@ pre {
 	padding: 0;
 	margin: 0;
 	border: 0;
-	max-width: 50%;
+	max-width: 80%;
 }
 pre code {
 	background: #ccc;
@@ -124,4 +124,12 @@ pre code {
 
 h1, h2, h3, h4, h5, h6, strong {
 	color: #fff;
+}
+
+img, li {
+	padding: 5px 0;
+}
+body {
+	/* width: 1000px; */
+	margin: 0 auto;
 }

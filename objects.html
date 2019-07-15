@@ -184,7 +184,8 @@
     */
 </code></pre>
                         </p>
-                        
+                        <hr>
+
                         <h2>6. Functions are Objects</h2>
                         <ul>
                             <li>One of the confusing concepts in JavaScript is here, functions are objects. So this circle function we have here is actually an object.
@@ -194,9 +195,136 @@
                                 <br>
                                 So the purple objects are methods like call, bind, apply, and the blue icons are properties.
                             </li>
-                            <li></li>
                         </ul>
+                        <hr>
+                        
+                        <h2>7. Values vs Reference Types</h2>
+                        <ul>
+                            <li>
+                                    In JavaScript we have two categories of types. On one side we have value types, also called <strong>primitives or value types</strong>, on the other side we have <strong>reference types</strong>.
+                                    <br>
+                                    <img src="./img/types.JPG" alt="Values vs Reference Types" title="Values vs Reference Types" />
+                            </li>
+                            <li>
+                                    I'm going to define two primitives, x and y. I'm going to set y to x, so here y is 10, now I'm going to change the value of x to 20, what I want you to note here,
+                                    is that x and y are two independent variables, so, let's save the changes, go back in the console, let's log x, x is 20, and y
+                                    is 10, they are independent. 
+                                    <br>
+                                    <img src="./img/types-2.JPG" alt="Values vs Reference Types" title="Values vs Reference Types" />
+                                    <br>
+                                    So when we work with primitives. This value, this value that we have here is
+                                    stored inside of this variable. When we copy that variable that value that is stored in the variable is
+                                    copied into this new variable. So they are completely independent of each other.
+                            </li>
 
+                            <li>
+                                Now let's see what happens if we use a reference type or an object here. So I'm going to
+                                change this to an object that has a property called value. And then instead of saying x to 20, I'm going to set x.value to 20.
+                                <br>
+                                <img src="./img/types-3.JPG" alt="Values vs Reference Types" title="Values vs Reference Types" />
+                                <br>
+                                So save the changes, back in the console, let's log x so you can see value property is 20,
+                                now let's log y, you can see the value property of y is also 20. So this is the takeaway. When we use
+                                an object, that object is not stored in this variable.
+                                That object is stored somewhere else in the memory, and the address of that memory location is stored inside that memory variable.
+                                So then when we copy x into y, it's the address or the reference that is copied. In other words, both x and y are pointing to the same,
+                                object in memory. And when we modify each object using x, or y, our changes are immediately visible to other variable.
+                            </li>
+                            <li>
+                                <strong>So here's the conclusion. Primitives are copied by value, reference types or objects are copied by by their reference.</strong>
+                                <br>
+                                <img src="./img/types-4.JPG" alt="Values vs Reference Types" title="Values vs Reference Types" />
+                                <br>
+<pre>
+    <code>
+        let x = {value: 10};
+        let y = x;
+        console.log(y.value)
+        y.value = 151;                                
+        console.log(x.value)
+        /*
+        outputs:
+        10
+        151
+        */
+    </code>
+</pre>
+                            </li>
+                            <li>
+                                So remember this, in JavaScript we have value types, also called primitives, as well as
+                                reference types which are objects. Our primitives are number, string, boolean, undefined and
+                                null. Primitives or value types are copied by their value reference types or objects, are copied by their reference.
+                            </li>
+                        </ul>
+                        <hr>
+                        
+                        <h2>8. Adding or Removing Properties</h2>
+                        <ul>
+                            <li>
+                                Alright so here we have our circle constructor function and using that we create a circle object.
+                                Now these objects in JavaScript are dynamic. That means, after you create them we can add extra properties in them 
+                                and delete some properties. You may be wondering why this is useful in the real world. Imagine you're working with the 
+                                user object. The client, it can be a web or mobile application is going to send a user object to the server
+                                on the server, we get this user object, and then we add additional stuff to it. For example we can add a token property
+                                that we generate on the fly on the server. So we can always add something extra to an existing object.
+                                Because we don't have classes, we don't need to define these properties ahead of time.
+                                <br>
+                                <img src="./img/add-property.JPG" alt="Adding or Removing Properties" title="Adding or Removing Properties" />
+                                <br>
+                                We can add them whenever we need them, and that makes JavaScript extremely powerful and easy to work with. In languages like C#
+                                or Java, every time we want to implement scenarios like this we have to go back and change our classes. So here, let me go 
+                                back and add a property to our circle object. You can set the location here, like this. Save the changes,
+                                now here on the console, let's log circle alright you can see here we have two properties location and radius. You also have another
+                                notation for accessing properties, that is bracket notation. So, another way to rewrite this code is like this.
+                                We use brackets and use a string to reference a property. So location. It's exactly the same. As you can see, the dot notation
+                                is simpler, and less verbose then brackett notation, but this notation is also useful in certain scenarios.
+                                For example, when you want to dynamically access a property name. For example, let's imagine we have this
+                                constant called propertyName set to location. We have that somewhere in our application,
+                                now we want to access the location property of a circle. If you're dealing with this dynamically at a time
+                                of writing the code, we don't know what is the name of that property. That is calculated at run time. So we can type something like this, 
+                                circle.location. But what we can do is use the bracket notation. So we use circle brackets, property, name.
+                                Another use case for using the bracket notation, is when you are using the property names that are not valid identifiers.
+                                For example, let's imagine that the name of this property is center-location.
+                                We can't access this property like this. Circle-center-location, that doesn't work, so if you have special characters
+                                or a space, that's when you use the bracket notation.
+                            </li>
+                            <li>
+                                Now we can also delete a property from an existing object. A real world use case for this
+                                is when you get a user object from a database, and you want to return it to the client.
+                                But maybe that user object has certain properties you don't want to send to the client. 
+                                You don't want to send the password, you don't want to send the credit card info, in that case, you will dynamically delete
+                                one or more properties from an object. So, we use the delete operator, and then reference the property name. So,
+                                circle.location. Again, here we can use the .notation or brackets.
+                                <br>
+                                <img src="./img/del-property.JPG" alt="Adding or Removing Properties" title="Adding or Removing Properties" />
+                            </li>
+                        </ul>
+                        <hr>
+                        
+                        <h2>9. Enumerating Properties</h2>
+                        <ul>
+                            <li>
+                                Sometimes you need to iterate over, or enumerate properties in an object. We can do that using the for in loop. So,
+                                for let key in circle. So in every iteration, key will hold the value of one key in this object.
+                                Let's log that on the console. Okay, So look we have radius, and draw so it's returning both properties and methods.
+                                Now if you want to get the value of these properties you can use the bracket notation.
+                                So here, in console.log I'm going to log. circle of key. We learned in the last
+                                lecture that we can use the bracket notation to access a member.
+                                Okay? So save, now we can see we use 10 and draw as a function. What if we want to get only the properties and not the methods? Well,
+                                we can use the type of operator to check the type of this value. So, if typeof circle of key. Is not equal to function
+                                then we will display it on the console. Save. Get the changes, now we get only the radius. There is
+                                another approach to get all the keys in an object, so, this object that we have as a method called keys, we can pass our circle object here
+                                and this will return all the keys in the circle as an array. So, let's store them here, and log them on the console.
+                                So, here we have an array with two members, radius and draw. With this approach, we cannot separate the properties from methods. Now finally, sometimes you want to know
+                                if an object has a given property. For that we use the in operator. So, if here we add the name of the property on the string, if radius
+                                is in circle, we do a console.log of circle as a radius. Okay? Save the changes, and here's our message.
+                                <br>
+                                <img src="./img/enum-property.JPG" alt="Enumerating Properties" title="Enumerating Properties" />
+                                <br>
+                                <strong>So remember to enumerate all the members in an object you can use the for in loop to get all the keys, and an object use object.keys to check for the existence
+                                        of a property or a method in an object, use the in operator.</strong>
+                            </li>
+                        </ul>
                     </div>
             </div>
         </div>
