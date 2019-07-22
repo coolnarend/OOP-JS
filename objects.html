@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="./css/dark.css" />
 
     <script>
-        let baseSal = 30000;
-        let overTime = 10;
-        let rate = 20;
+        // let baseSal = 30000;
+        // let overTime = 10;
+        // let rate = 20;
 
-        function getWage(baseSal, overTime, rate) {
-            return baseSal + (overTime * rate);
-        }
+        // function getWage(baseSal, overTime, rate) {
+        //     return baseSal + (overTime * rate);
+        // }
     </script>
 
 </head>
@@ -321,10 +321,53 @@
                                 <br>
                                 <img src="./img/enum-property.JPG" alt="Enumerating Properties" title="Enumerating Properties" />
                                 <br>
-                                <strong>So remember to enumerate all the members in an object you can use the for in loop to get all the keys, and an object use object.keys to check for the existence
-                                        of a property or a method in an object, use the in operator.</strong>
+                                <strong>So remember :
+                                    <ol>
+                                        <li>to enumerate all the members in an object you can use the for in loop</li>
+                                        <li>to get all the keys, and an object use object.keys</li>
+                                        <li>to check for the existence of a property or a method in an object, use the in operator.</li>
+                                    </ol>
+                                </strong>
                             </li>
                         </ul>
+                        <hr>
+                        
+                        <h2>10. Abstraction</h2>
+                        <p><strong>Abstraction means we should hide the details and complexity and show or expose only the essentials.</strong></p>
+                        <p>Example:</p>                   
+<pre>
+    <code>
+    function Circle(radius) {
+        this.radius = radius;
+        this.defaultLocation = {x: 0, y: 0};
+        this.computeOptimumLocation = function() {
+            // ...
+            console.log('computeOptimumLocation - function called');
+        }
+        this.draw = function() {
+            this.computeOptimumLocation();
+            console.log('draw');
+        }
+    }
+
+    const circle = new Circle(10);
+    circle.computeOptimumLocation();
+    circle.draw();
+    </code>
+</pre>
+                        <ul>
+                            <li>In this particular example, we should hide this property "defaultLocation" as well as this "computeOptimumLocation" method.</li>
+                            <li>These are implementation details, these are part of the complexity of this object, we want to hide these from the consumers of this object.</li>
+                            <li>Instead, we want to expose only the essentials, that is the radius and the draw method.</li>
+                        </ul>
+                        <p>A lot of developers who have not been able to apply object oriented programming effectively have failed to comply with this principle.
+                            Everything in their objects, is public and accessible from the outside.</p>
+                        <p>And this will bring a number of issues. One issue is that every time we change the implementation of that object, you have to modify many different places in your code. </p>
+                        <hr>
+                        
+                        <h2>11. Private Properties and Methods</h2>
+
+
                     </div>
             </div>
         </div>
