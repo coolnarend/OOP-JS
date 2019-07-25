@@ -366,7 +366,187 @@
                         <hr>
                         
                         <h2>11. Private Properties and Methods</h2>
+<pre>
+    <code>
+    function Circle(radius) {
+        this.radius = radius;
+        let defaultLocation = {x: 0, y: 0};
+        let computeOptimumLocation = function() {
+            // ...
+            console.log('computeOptimumLocation - function called');
+        }
+        this.draw = function() {
+            let x, y;
+            computeOptimumLocation();
+            console.log('draw');
+        }
+    }
 
+    const circle = new Circle(10);
+    // circle.computeOptimumLocation(); // throws error
+    
+    circle.draw();
+    </code>
+</pre>
+                        <p>So here, we have one function(Circle()) and another function(draw()) inside of that function(Circle()). Inside this function we can declare certain
+                            variables like x and y(let x, y;). And these are local variables that are only available in this function(draw()).
+                            Their scope is limited to this function, so when we finish executing this function, x and y will go out of scope.</p>
+                        <p>In contrast to scope we have closure, a <strong>closure</strong> determines what variables will be accessible to an inner function. So this function(draw()) will be able to access
+                            all the local variables defined here, as well as the variables defined in this parent function(Circle()).</p>
+                        <p>So, variables like "let defaultLocation and let computeOptimumLocation" are the variables of its parent function. They are within the
+                            scope of this function(Circle()), but within the closure of this inner function(draw()).
+                        </p>
+                        <p>Now don't confuse closure with scope, because the scope is temporary and it dies. So every time we call the draw method, these variables will be created
+                            and reinitialized, and then after this function they will die. So scope is temporary. But closure stays there. So when we call the draw function, 
+                            after we finish executing this function, these variables will continue to sustain memory.</p>
+                        <p>They will preserve their state, because they are part of the closure of this draw function.</p>
+                        <hr>
+                        
+                        <h2>12. Getters and Setters</h2>
+<pre>
+    <code>
+    function Circle(radius) {
+        this.radius = radius;
+        let defaultLocation = {x: 0, y: 1};
+        let computeOptimumLocation = function() {
+            // ...
+            console.log('computeOptimumLocation - function called');
+        }
+        this.draw = function() {
+            let x, y;
+            computeOptimumLocation();
+            console.log('draw');
+        }
+        Object.defineProperty(this, 'defLocation', {
+            get: function() {
+                return defaultLocation;
+            },
+            set: function(val) {
+                if(!val.x || !val.y) {
+                    throw new Error('invalid location')
+                } else {
+                    defaultLocation = val;
+                }
+
+            }
+        });
+    }
+
+    const circle = new Circle(10);
+    circle.draw();
+    //output:
+    computeOptimumLocation - function called
+    draw
+    {x: 15, y: 20}
+    </code>
+</pre>
+                        <p>So in the last lecture, we converted these two members to private members. Now more accurately, these are not private members,
+                            of the circle object, because technically they are not inside of a circle object, there are local variables that we have defined
+                            inside of this circle function, but from an object-oriented point of view, we can refer to them as private members of the circle object.
+                            Now, I want to simplify the code here so we can focus on a small issue, I'm going to delete this compute function,
+                            alright, so we have this private property. defaultLocation. We cannot access this from the outside. But what if we want to display this
+                            default location somewhere in our application? So we don't want to modify it we just want to be able to read it. So one solution
+                            is to define a method here, this. getDefaultLocation. Set it to a function, and in this function, we simply return defaultLocation,
+                            once again, we are dealing with an inner function here, the closure of this function includes all the variables defined here as
+                            well as all the variables defined in the parent functions. So here we have access to a default location. And with this
+                            we can call circle.getDefaultLocaton. However, I don't like this syntax, I don't like the fact that we're calling this as a method, it would be nicer
+                            if we could access this property like this, Default Location, but we shouldn't be able to set this from the outside
+                            we can only read it. So let me show you how to define a property like that. So, this Object that you have seen so far has a
+                            defineProperty, we have another method called define Properties, if you want to define multiple properties in one go. Now the first argument to this 
+                            method is the object that you want to add a new property to. That object is the one that is referenced by this. The new circle object.
+                            Right? So, we pass that here, the second argument is the name of our property, we want to call that default Location. And the third argument is an
+                            object, in this object we add a key value pair, the key is get, this is a special key word for JavaScript and the value as a function.
+                            So, when we access circle.defaultLocation this function will be called, okay? Now here we can simply return defaultLocation. Again, this variable is
+                            part of the closure of this inner function, so here we can access it, right? Now in vs code you don't see that in intellisence. So we don't have default
+                            Location as a property, however, if we save the changes oops, I made a mistake here, actually, I should have used
+                            defineProperty. So save the changes, alright, so now look at the circle object. Circle so here's our new property,
+                            defaultLocation, you can see ... in front of it because this is a computer property. When we click this, the get
+                            function will be executed and here's the result, our defaultLocation. Okay? Also, you can see that function is stored here as a getter. So a getter
+                            is a function that is used to read a property. So this property we have here, defaultLocation, we refer to this as a
+                            readOnly property. Now if you want to set the value of this property on the outside, we define a setter. So in this object,
+                            we add another key value pair, the key is set which is a special key word, and the value is a function.
+                            Now this function takes an argument called value. We can set this defaultLocation to this value.
+                            But what is interesting is because we are using a function in this function, we can perform some validation,
+                            for this value before setting the default location. For example, we can write a
+                            simple logic like this. IfValue .x is falsey, or value.y is falsey,
+                            we can throw a new Error, again error is a built in constructor to create error
+                            objects. We pass a string, invalid location. So this is the benefit of a setter. Now, we can come here,
+                            and set circle.defaultLocation, let's see what happens if we set this to 1. Save the changes,
+                            and here's our error, invalid location. So to recap use object.define property to define getters, and/or setters.
+                        </p>
+<p><strong>Resource:</strong></p>
+<pre>
+    <code>
+            // The simplest way to create an object is using an object literal 
+            const circle = { 
+               radius: 1, 
+               draw: function() {}
+            }; 
+               
+            // To create multiple objects with the same structure and behaviuor (methods), use a factory or a constructor. 
+            
+            // Factory function 
+            function createCircle(radius) { 
+               return {
+                  radius, 
+                  draw: function() {}
+               } 
+            } 
+            
+            // Constructor function 
+            function Circle(radius) { 
+                this.radius = radius; 
+                this.draw = function() {}
+            } 
+                
+            // Every object has a "constructor" property which returns the function that was used to construct or create that object. 
+            const x = {};
+            x.constructor; // returns Object() 
+               
+            // In JavaScript, functions are objects. They have properties and methods. 
+            Circle.name; 
+            Circle.length;
+            Circle.constructor; // returns Function()
+            Circle.call({}, 1); // to call the Circle function 
+            Circle.apply({}, [1]);
+            
+            // Value types are copied by their value, reference types are copied by their reference. 
+            // Value types in JavaScript are: String, Number, Boolean, Symbol, undefined and null
+            // Reference types are: Object, Function and Array 
+               
+            // JavaScript objects are dynamic. You can add/remove properties: 
+            circle.location = {};
+            circle['location'] = {};
+                                  
+            delete circle.location; 
+                                  
+            // To enumerate the members in an object: 
+            for (let key in circle) console.log(key, circle[key]);
+            
+            Object.keys(circle); 
+                                  
+            // To see if an object has a given property
+            if ('location' in circle)
+                                  
+            // Abstraction means hiding the complexity/details and showing only the essentials. 
+            // We can hide the details by using private members. Replace "this" with "let". 
+            
+            function Circle(radius) { 
+               // Public member 
+               this.radius = radius; 
+            
+               // Private member                       
+               let defaultLocation = {};                      
+            }                       
+            
+            // To define a getter/setter, use Object.defineProperty():
+            
+            Object.defineProperty(this, 'defaultLocation', {
+                get: function() { return defaultLocation; },
+                set: function(value) { defaultLocation = value; }
+            });
+    </code>
+</pre>
 
                     </div>
             </div>
