@@ -41,8 +41,59 @@
                             as IS-A relationship. So, we say circle IS-A shape.
                             Now this is the classical definition of inheritance. 
                         </p>
-
                         <hr>
+
+                        <h2>2. Prototypes and Prototypical Inheritance</h2>
+                        <p>
+                            Well, here we have a circle object. We can define another object
+                            let's call it shape, and add all the common behavior, or all the common methods 
+                            in this object, like computeOptimumLocation. And then somehow we can link
+                            a circle object to the shape object. Now we refer to the shape object
+                            as the prototype of the circle.
+                            <strong>So a prototype is essentially a parent of another object.</strong>
+                        </p>
+                        <p>
+                            Whenever you hear the word prototype, just think parent. 
+                            So every object in JavaScript, except only a single object (i.e. root object), has a prototype
+                            for parent. And it inherits all the members we find in it's prototype.
+                        </p>
+                        <p>
+                            <img src="./img/proto-1.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            I'm going to define a new object, just an empty object. Now let's
+                            inspect this. So, look here we have a property called proto. Note that this property
+                            is faded, because it's deprecated, and you shouldn't directly access it.
+                            It's only available here to help you troubleshoot problems. So let's 
+                            expand this, alright look, this is the prototype, or parent, for this x object that 
+                            we created here. We have these properties and methods, like constructor, you saw that in the last 
+                            section. So every object has a constructor property which references the function that was used to construct or create
+                            that object. We also have that object here toString so, let's use that method, you can type x.toString. <br>
+                            <img src="./img/proto-2.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                        </p>
+                        <p> So every object that we create in JavaScript directly or indirectly inherits from prototype of its parent object and this parent object doesn't have a prototype or parent object.</p>
+                        <p>
+                            <img src="./img/proto-3.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            We have x and y, and both these objects reference object base.
+                            So we have a single instance of objectBase in memory. <br>
+                            <img src="./img/proto-4.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            Both, x and y have the exact same prototype. 
+                        </p>
+                        <p>
+                            So now that you understand what a prototype is, let's define <strong>prototypical inheritance</strong>. <br>
+                            <img src="./img/proto-5.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            Earlier, we accessed the toString (i.e.: x.toString()) method, on the x object, we didn't define 
+                            method in our x object, because x was an empty object, right?
+                            So how does this work, how can we access this method? Well, when we access a property or a method on an object, 
+                            JavaScript engine first looks for that property or method first on the object itself (i.e. <strong>x object</strong> ).
+                            If it can't find it, then it looks at the prototype for that object.
+                            Again, if it can find that member, it will look at the prototype of that object 
+                            all the way up to the <strong>root object</strong> which we call objectBase. So this is <strong>prototypical inheritance</strong> in action.
+                        </p>
+                        <p>So, once again, I want to emphasize that a prototype is just a regular object in memory. <br>
+                            <img src="./img/proto-6.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            There is nothing special about it. Every object has a prototype or a parent, except the root object.
+                        </p>
+                        <hr>
+
 
 
                     </div>
