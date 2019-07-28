@@ -4,17 +4,6 @@
     <title>OOP</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/dark.css" />
-
-    <script>
-        // let baseSal = 30000;
-        // let overTime = 10;
-        // let rate = 20;
-
-        // function getWage(baseSal, overTime, rate) {
-        //     return baseSal + (overTime * rate);
-        // }
-    </script>
-
 </head>
 
 <body class="dark-theme">
@@ -23,14 +12,36 @@
             <div class="row">
                 <div class="col-md-12">
                         <h1>Prototypes</h1>
-                        <h2>1. Introduction</h2>
-                        <p>JavaScript is all about objects, so in order to learn object-oriented programming, first you need to have
-                            a good understanding of objects. So in this section, I'm going to cover some fundamental concepts are objects, such as 
-                            <strong> creating objects, factories and constructors, primitives and reference types, and how they behave differently, working with the properties of an object such as
-                                adding, removing properties, as well as enumerating them. We're also going to learn how to define private properties as well as getters
-                                and setters.
-                            </strong>
+                        <h2>1. Inheritance</h2>
+                        <p>
+                            Inheritance is one of the core concepts of object-oriented programming 
+                            that enables an object to take on the properties and methods of
+                            another object. And this makes it easy to reuse code in different parts of an application.
+                        </p> 
+                        <p><strong>Here is an example.</strong> <br>
+                            So we have this circle class with one method, computeOptimumLocation. 
+                            Let's imagine tomorrow we're going to add another class to our application called square. 
+                            And square also needs this method, computeOptimumLocation. <br>
+                            For now let's imagine the implementation of this object is exactly the same
+                            across these two different classes, you don't want to repeat this implementation. <br>
+                            Because if there is a bug in this application, you have to fix it
+                            in multiple places. Or if we decide to change the implementation
+                            better, again, you have to repeat this in different places. <br> 
+                            <img src="./img/inheritance-1.JPG" alt="" class="img-thumbnail img-responsive"> <br>
+                            So that's when inheritance comes to the rescue.
+                            We can define a new class called Shape, put this method there, and
+                            have circle and square inherit this method, of the shape of the class. <br>
+                            <img src="./img/inheritance-2.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            Now in inheritance, we have a few terms that you should be familiar with,
+                            because I'm going to use these terms throughout this course. In this diagram, 
+                            we refer to the shape class as the base class, or super class, or parent class. 
+                            All these terms are exactly the same. Different tutorials and different books use 
+                            different terms. In contrast, we refer to the circle as the direct class
+                            or sub class, or child class, and finally, we refer to the inheritance relationship 
+                            as IS-A relationship. So, we say circle IS-A shape.
+                            Now this is the classical definition of inheritance. 
                         </p>
+
                         <hr>
 
 
