@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <title>OOP</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/dark.css" />
+
+    <script>
+        console.log(2 + '2');
+        console.log(2 - '2');
+        console.log(2 * '2');
+        console.log(2 / '2');
+        console.log("-------------------------------");
+
+        let nums = [1, 2, 2, 3, 3, 4, 5, 6, 7, 7, 8, 9, 9, 9, 10];
+        let sortnums = [...new Set(nums)];
+        console.log(sortnums);
+        console.log("-------------------------------");
+
+        let func = function() {
+            {
+                (function(){
+                    let l = 'let';
+                    var v = 'var';
+                })();
+            }
+
+            // console.log(v);
+            // console.log(l);
+        }
+
+        func();
+        console.log("-------------------------------");
+        console.log(5 < 6 < 7);
+        console.log(true < 7);
+        console.log('Here true is coverted to 1 as we are using the operator sign');
+
+        console.log(7 > 6 > 5);
+        console.log(true > 5);
+        console.log("-------------------------------");
+
+
+        // let a = function() {
+        //     return arguments
+        // };
+        let a = (...ele) => { return ele};
+        console.log(a('hi', 'bye'));
+        console.log("-------------------------------");
+
+        let g = function () {
+            return {
+                message: 'hi'
+            }
+        }
+        console.log(g());
+
+        console.log("-------------------------------");
+        let profile = {
+            name: 'Techy'
+        }
+        // Object.freeze(profile);
+        console.log('Object.freeze - freezes the object to add any new property or modify the existing property');
+        Object.seal(profile);
+        console.log('Object.seal - seals the object to add any new property but allows to modify the existing property and one cannot remove the exsting property');
+
+        profile.age = 4;
+        profile.name = 'Thor';
+
+        console.log(profile);
+        console.log("-------------------------------");
+
+        let visa = {
+            name: 'Visa card'
+        };
+
+        Object.defineProperty(visa, 'numberrs', {
+            value: 1234123412341234,
+            writable: false
+        });
+        visa.name = 'Master card';
+        visa.numberrs = 4568456845684568;
+        
+        console.log(visa);
+        console.log('with Object.defineProperty - one can add a new key value pair in an object and also can control its behaviour');
+        console.log("-------------------------------");
+
+        console.log(Math.max());
+
+
+
+    </script>
+
+</head>
+
+<body class="dark-theme">
+    
+        
+</body>
+
+</html>
