@@ -94,8 +94,92 @@
                         </p>
                         <hr>
 
+                        <h2>3. Multi-level Inheritance</h2>
+                        <p> Let's define an empty array, let's call this myArray. Now, let's inspect this.
+                            Alright, so, here we have a prototype property, let's look at the prototype or the parent
+                            for this array. Okay, look, in this object we have these methods. <br>
+                            <img src="./img/inheritance-3.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            So this is what we have in memory, we have myArray. Which derives from, let's call this array base. <br>
+                            <img src="./img/inheritance-4.JPG" class="img-thumbnail img-responsive" alt=""> <br>
+                            Now, let's inspect the prototype of the array based object. So, back here, when you scroll down, look here you have
+                            another proto property, let's expand this, what do you see here?  <br>
+                            <img src="./img/inheritance-5.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            That looks familiar right? This is our object base. Or the root object in JavaScript, so here's the
+                            visualization of what we have in memory. <br>
+                            <img src="./img/inheritance-6.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            <strong>This is what we call multilevel inheritance.</strong>
+                        </p>
+                        <p>
+                            What about the objects you create using the custom constructors?
+                        </p>
+                        <pre><code>
+    function Circle(radius) {
+        this.radius = radius;
 
+        this.draw = function() {
+            console.log('draw');
+        }
+    }
 
+    const circle = new Circle(10);
+                        </code></pre>
+                        <p>
+                            So here we have the constructor Circle, and we have created the circle object using this constructor.
+                            So let's inspect this on the console. <br>
+                            <img src="./img/inheritance-7.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            So, circle, here's our circle object, it has a prototype look, this prototype is the prototype
+                            for all circle objects that we create using our circle constructor. Let's call this circle base. <br>
+                            So every time we call the circle constructor to create a new circle object, this constructor will create
+                            a new object and set it's prototype property to circle base. <br>
+                            <strong>In other words, objects created by a given constructor will have the same prototype.</strong>
+                        </p>
+                        <p>
+                            So all circle objects created by the circle constructor will have the same prototype, and similarly, all arrays created by the
+                            array constructor will have the same prototype. <br>
+                            <img src="./img/inheritance-8.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            Now, back here, so, this is our circle base, circle base also has a prototype. Let's see what we have here.
+                            What is this object? That's object base, right? The root object in JavaScript. So this is what we have in memory. <br>
+                            <img src="./img/inheritance-9.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            We have the circle object that inherits from circleBase, and circleBase inherits from objectBase.
+                        </p><hr>
+
+                        <h2>4. Property Attributes</h2>
+                        <p>Earlier in the last section, you learned about object.defineProperty method. We used this to define
+                            a getter and a setter for the property. So, as the first argument we pass person, the second argument is the name of the target property which is name,
+                            and the third argument is an object which is our property descriptor object.
+                            This is where we add the attributes to this property. <br>
+                            <img src="./img/prop-att-1.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            So in the last section we used get and set to define a getter and a setter. Now we are going to use different
+                            set of properties. So I can send this to writable false.<br>
+                            <img src="./img/prop-att-2.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            Here the name is not changed, so that's the writable attribute. <br>
+                            We have another attribute, enumerable, we can set this to false, and then this will
+                            not show up in object.keys. So when you log Object.keys, of person, look now we get an empty array. <br>
+                            <img src="./img/prop-att-3.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            So let's what happens if we set configurable to false. <br>
+                            <img src="./img/prop-att-4.JPG" class="img-thumbnail img-responsive" alt=""> <br> 
+                            Now we cannot delete this property. So, if I try to delete person.name, nothing will happen. So,
+                            let's log the person on the console, look the name property is still there.
+                        </p><hr>
+
+                        <h2>5. Constructor Prototypes</h2>
+                        <script>
+                        function Circle(radius) {
+                            this.radius = radius;
+
+                            this.draw = function() {
+                                console.log('draw');
+                            }
+                        }
+
+                        const circle = new Circle(10);
+                        console.log(Circle.prototype === circle.__proto__);
+                        console.log(Circle);
+                        console.log(circle);
+
+                        </script>
+
+                    <!-- ------------------------ -->
                     </div>
             </div>
         </div>
